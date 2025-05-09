@@ -66,12 +66,11 @@
     "@typescript-eslint/utils": "8.32.0",
     "@typescript-eslint/visitor-keys": "8.32.0",
     "graphemer": "^1.4.0",
-    "ignore": "^5.3.1",
+    "ignore": "^7.0.0",
     "natural-compare": "^1.4.0",
     "ts-api-utils": "^2.1.0"
   },
   "devDependencies": {
-    "@types/marked": "^6.0.0",
     "@types/mdast": "^4.0.3",
     "@types/natural-compare": "*",
     "@typescript-eslint/rule-schema-to-typescript-types": "8.32.0",
@@ -88,7 +87,7 @@
     "micromark-extension-mdxjs": "^3.0.0",
     "prettier": "^3.2.5",
     "rimraf": "*",
-    "title-case": "^3.0.3",
+    "title-case": "^4.0.0",
     "tsx": "*",
     "typescript": "*",
     "unist-util-visit": "^5.0.0",
