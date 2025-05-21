@@ -2,6 +2,7 @@ import type { KnipConfig } from 'knip' with { 'resolution-mode': 'import' };
 
 export default {
   rules: {
+    binaries: 'off',
     classMembers: 'off',
     duplicates: 'off',
     enumMembers: 'off',
@@ -22,18 +23,16 @@ export default {
   workspaces: {
     '.': {
       entry: ['tools/release/changelog-renderer.js', 'tools/scripts/**/*.mts'],
-      ignore: ['tools/scripts/typings/typescript.d.ts', 'typings/*.d.ts'],
       ignoreDependencies: [
-        '@babel/code-frame',
-        '@babel/core',
-        '@babel/eslint-parser',
-        '@babel/parser',
-        '@babel/types',
-        '@nx/js',
         '@nx/workspace',
-        'make-dir',
         // imported for type purposes only
         'website',
+      ],
+
+      project: [
+        'tools/scripts/**/*.mts',
+        '!tools/scripts/typings/typescript.d.ts',
+        '!typings/*.d.ts',
       ],
     },
     'packages/ast-spec': {
@@ -41,7 +40,6 @@ export default {
         // @typescript-eslint/typescript-estree is not listed in dependencies to avoid circular dependency errors
         // You can check a more detailed explanation in this file
         'tests/util/parsers/typescript-estree-import.ts',
-        'typings/global.d.ts',
       ],
 
       project: ['src/**/*.ts', 'tests/util/**/*.ts', '!src/**/fixtures/**'],
@@ -51,15 +49,19 @@ export default {
         entry: [
           'tests/**/*.{bench,test,test-d}.?(c|m)ts?(x)',
           'tests/util/setupVitest.mts',
+          'tests/util/custom-matchers/custom-matchers.ts',
+          'tests/util/custom-matchers/vitest-custom-matchers.d.ts',
         ],
       },
     },
     'packages/eslint-plugin': {
+      entry: ['tools/**'],
       ignore: [
         'tests/fixtures/**',
         'typings/eslint-rules.d.ts',
         'typings/typescript.d.ts',
       ],
+      ignoreDependencies: ['tsx'], // used in nx target definitions
     },
     'packages/eslint-plugin-internal': {
       ignore: ['tests/fixtures/**'],
